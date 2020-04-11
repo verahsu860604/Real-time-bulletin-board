@@ -1,0 +1,15 @@
+body {
+  /*padding: 50px;*/
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.float{
+	position:fixed;
+	bottom:30px;
+	right:40px;
+	box-shadow: 2px 2px 3px #999;
+}
