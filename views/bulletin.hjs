@@ -27,7 +27,10 @@
   			.then(function(data) { data.forEach(d => addCard(d))})
 			
 			function addCard(data) {
-				var html = '<div class="card mt-3">' + '<div class="card-header">' + data['title'] + '</div>' + '<div class="card-body"> <blockquote class="blockquote mb-0"> <p>' + data['content'] + '</p> <footer class="blockquote-footer">' + data['name'] + '  <cite title="Source Title">' + data['timestamp'] + '</cite></footer></blockquote></div></div>'
+				let data_ob = new Date(parseInt(data['timestamp']))
+				let time = data_ob.toLocaleString()
+				// internal time use toString()
+				var html = '<div class="card mt-3">' + '<div class="card-header">' + data['title'] + '</div>' + '<div class="card-body"> <blockquote class="blockquote mb-0"> <p>' + data['content'] + '</p> <footer class="blockquote-footer">' + data['name'] + '  <cite title="Source Title">' + time + '</cite></footer></blockquote></div></div>'
 				document.getElementById('bulletin').insertAdjacentHTML('beforeend', html);
 			}
 			

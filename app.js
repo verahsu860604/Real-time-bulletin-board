@@ -35,16 +35,7 @@ var db = firebase.firestore();
 app.post('/newpost/:familyName', urlencodedParser, function (req, res) {
     let familyName = req.params.familyName
     let data = JSON.parse(JSON.stringify(req.body))
-
-    let ts = Date.now();
-    let date_ob = new Date(ts);
-    let date = date_ob.getDate();
-    let month = date_ob.getMonth() + 1;
-    let year = date_ob.getFullYear();
-    let hours = date_ob.getHours();
-    let minutes = date_ob.getMinutes();
-
-    let setDoc = db.collection(familyName).doc(year + "-" + month + "-" + date + " " + hours + ":" + minutes).set(data);
+    let setDoc = db.collection(familyName).doc(Date.now().toString()).set(data);
     res.render('bulletin', {
       familyName: familyName
     })
