@@ -17,9 +17,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// TEMP VARIABLES
-var family = "The House of Pilar"
-
 var db = firebase.firestore();
 
 /* GET users listing. */
@@ -29,7 +26,9 @@ router.get('/:id', function(req, res, next) {
 	let allPosts = postRef.get()
 	.then(snapshot => {
 		snapshot.forEach(doc => {
-			posts.push(doc.data())
+			let data = doc.data()
+			data['timestamp'] = doc.id
+			posts.push(data)
 		});
 		res.send(posts);
 	})

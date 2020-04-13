@@ -7,7 +7,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 var multer  = require('multer')
 var upload = multer()
-// var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var indexRouter = require('./routes/index');
 var bulletinRouter = require('./routes/bulletin');
@@ -27,20 +27,34 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var firebase = require("firebase/app");
+var firestore = require("firebase/firestore");
+var db = firebase.firestore();
+
+app.post('/newpost/:familyName', urlencodedParser, function (req, res) {
+    let familyName = req.params.familyName
+    let data = JSON.parse(JSON.stringify(req.body))
+
+    let ts = Date.now();
+    let date_ob = new Date(ts);
+    let date = date_ob.getDate();
+    let month = date_ob.getMonth() + 1;
+    let year = date_ob.getFullYear();
+    let hours = date_ob.getHours();
+    let minutes = date_ob.getMinutes();
+
+    let setDoc = db.collection(familyName).doc(year + "-" + month + "-" + date + " " + hours + ":" + minutes).set(data);
+    res.render('bulletin', {
+      familyName: familyName
+    })
+})
+
 // notes: routes
 app.use('/', indexRouter);
-app.use('/bulletin', bulletinRouter);
+app.use('/bulletin', bulletinRouter, urlencodedParser);
 app.use('/users', usersRouter);
-app.use('/post', postRouter);
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.post('/newpost', upload.array(), function (req, res) {
-
-  	res.send('welcome, ' + req)
-  	console.log(req)
-})
+app.use('/post', postRouter, urlencodedParser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,11 +71,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.route('/post')
- 	.get(function (req, res) {
- 		console.log('fuck')
-		res.sendFile(path + '/public/data.html');
-	});
 
 module.exports = app;

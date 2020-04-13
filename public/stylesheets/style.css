@@ -1,15 +1,33 @@
 body {
-  /*padding: 50px;*/
+  height: 100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('bg.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-a {
-  color: #00B7FF;
+#bg {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
+.custom-form {
+	padding: 30px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 3rem;
+}
+
+.form-inline {
+	margin-top: 10%;
+}
+
+/* 
 .float{
 	position:fixed;
 	bottom:30px;
 	right:40px;
 	box-shadow: 2px 2px 3px #999;
-}
+} */

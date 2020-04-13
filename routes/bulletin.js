@@ -1,16 +1,23 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+var familyName;
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-	res.render('bulletin', { 
-		familyName: 'The House of Pilar',
-		title: 'First post',
-		content: 'hello',
-		name: '阿肥',
-		timestamp: '2/1' 
-	});
-});
+// router.get('/', function(req, res, next) {
+// 	console.log('bulletin get')
+// 	res.render('bulletin', { 
+// 		familyName: req.params.familyName,
+// 	});
+// });
+
+router.post('/', urlencodedParser,  function(req, res) {
+	let data = JSON.parse(JSON.stringify(res.req.body))
+	familyName = data['name']
+	res.render('bulletin', {
+		familyName: familyName
+	})
+})
 
 module.exports = router;
