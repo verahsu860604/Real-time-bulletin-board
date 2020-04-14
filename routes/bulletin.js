@@ -3,7 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-var familyName;
+var groupName;
 
 // router.get('/', function(req, res, next) {
 // 	console.log('bulletin get')
@@ -14,9 +14,9 @@ var familyName;
 
 router.post('/', urlencodedParser,  function(req, res) {
 	let data = JSON.parse(JSON.stringify(res.req.body))
-	familyName = data['name']
+	groupName = data['name']
 	res.render('bulletin', {
-		familyName: familyName
+		groupName: groupName
 	})
 })
 

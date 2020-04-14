@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ familyName }}</title>
+		<title>{{ groupName }}</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link rel='stylesheet' href='/stylesheets/style.css' />
 	</head>
 	<body>
 		<nav class="navbar navbar-light bg-light">
-		  	<a class="navbar-brand mb-0 h1" href="/">{{familyName}}</a>
-			  <form action='\post\{{familyName}}'>
+		  	<a class="navbar-brand mb-0 h1" href="/">{{groupName}}</a>
+			  <form action='\post\{{groupName}}'>
 			  	<button type="submit" class="btn btn-light btn-sm">Add Post</button>	
 			 </form>
 		</nav>

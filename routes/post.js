@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/:familyName', function(req, res, next) {
-  res.render('post', { familyName: req.params.familyName });
+router.get('/:groupName', function(req, res, next) {
+  res.render('post', { 
+  	title: req.params.groupName,
+  	groupName: req.params.groupName });
 });
 
 module.exports = router;

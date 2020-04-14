@@ -32,12 +32,12 @@ var firebase = require("firebase/app");
 var firestore = require("firebase/firestore");
 var db = firebase.firestore();
 
-app.post('/newpost/:familyName', urlencodedParser, function (req, res) {
-    let familyName = req.params.familyName
+app.post('/newpost/:groupName', urlencodedParser, function (req, res) {
+    let groupName = req.params.groupName
     let data = JSON.parse(JSON.stringify(req.body))
-    let setDoc = db.collection(familyName).doc(Date.now().toString()).set(data);
+    let setDoc = db.collection(groupName).doc(Date.now().toString()).set(data);
     res.render('bulletin', {
-      familyName: familyName
+      groupName: groupName
     })
 })
 
